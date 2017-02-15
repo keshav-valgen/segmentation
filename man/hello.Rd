@@ -1,12 +1,12 @@
-\name{hello}
-\alias{hello}
-\title{Hello, World!}
+\name{segmentation}
+\alias{seg}
+\title{Segment}
 \usage{
-hello()
+segment()
 }
 \description{
-Prints 'Hello, world!'.
+Prints 'Segment values'.
 }
 \examples{
-hello()
+segment()
 }
