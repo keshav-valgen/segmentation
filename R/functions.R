@@ -1,14 +1,13 @@
 library(RForcecom)
 library(dplyr)
-library(curl)
 
-myqueries <- function(a, b, c, myquery, myobj) # 5 inputs; Access Token, Instance URL, API, Query String and Object to Query
-{
-
-  mysession <- c(sessionID = a,instanceURL = b, apiVersion = c)  # Create a new session using Access Token
-  queries <- rforcecom.bulkQuery(mysession, myquery, myobj)
-  return(queries)
-}
+# myqueries <- function(a, b, c, myquery, myobj) # 5 inputs; Access Token, Instance URL, API, Query String and Object to Query
+# {
+#
+#   mysession <- c(sessionID = a,instanceURL = b, apiVersion = c)  # Create a new session using Access Token
+#   queries <- rforcecom.bulkQuery(mysession, myquery, myobj)
+#   return(queries)
+# }
 
 slider <- function(var, iter) # 2 inputs; The numeric variable to convert and Number of cuts
 {
