@@ -5,6 +5,8 @@
 #'@import dplyr
 #'@export slider
 #'@export data_clean
+#'@export ranker
+#'@export index
 
 
 slider <- function(var, iter) # 2 inputs; The numeric variable to convert and Number of cuts
@@ -77,7 +79,56 @@ data_clean <- function(var){
   }
 }
 
+ranker <- function(dataFrame)
+{
+  df <- dataFrame
 
+  #Creating a table for use through dplyr
+  myorder <-  tbl_df(df)
+
+  colnames(myorder) <- c('Id', 'quant', 'qual') #Colnames generalized for ease of use
+  #myorder <- na.omit(myorder)
+  myorder$quant[is.na(myorder$quant)] <- 0 # Numeric NAs are considered as 0s
+  myorder <- myorder %>% arrange(desc(qual))
+
+  # Summarization and grouping by independent variable
+  summary <- myorder %>% group_by(qual) %>%
+    summarise(Records = n(), total = sum(quant))
+  summary <- summary %>% arrange(desc(total))
+  summary$decile <- as.numeric('NA')
+
+  # Core algorithm; setting up values and creating decile rankings
+  totalcount <- nrow(summary)
+  order1 <- tail(summary, totalcount %% 10)
+  order1$decile <- 11 # Anything not belonging to specified parameters will go to 11
+  order2 <- summary[-seq(nrow(summary),nrow(summary)-((totalcount %% 10)-1)),]
+  totalcount <- nrow(order2)
+
+  order2$decile <- rep(1:10, each = totalcount/10) #Create Declies
+
+  #Binding the two split tables
+  order <- rbind(order2,order1)
+
+  final <- merge(myorder, order, by = 'qual')
+  final$Records <- NULL
+  final$total <- NULL
+  final <- final %>% arrange(decile)
+  return(as.data.frame(final)) # Returns the data frame at record levels with decile values from 1: 11 appended
+
+}
+
+index <- function(data1)  # Indexing algorithm; takes in one dataframe with 2 variables, variable 1 is numeric (Dependent)
+  # and variable 2 is categorical (Independent)
+{
+  names(data1) <- c("Numeric","Categoric")
+
+  index1 <- data1 %>% group_by(Categoric) %>%
+    summarise(avg = mean(Numeric), count = n(), sum = sum(Numeric)) # The algorithm groups by categorical variable, summarizing by mean, count and sum of numeric variable
+
+  value1 <- sum(index1$sum)/sum(index1$count) #Index is calculated from the summary
+  index1$index <- (index1$avg/value1)*100
+  return(index1) # The function returns an indexed table with index values.
+}
 
 
 
