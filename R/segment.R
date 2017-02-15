@@ -1,7 +1,6 @@
 #'Segment
 #'
 #'This function builds a categorical variable from a numeric variable
-#'@usage segment()
 #'@import RForcecom
 #'@import dplyr
 #'@import stats
