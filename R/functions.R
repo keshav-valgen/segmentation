@@ -3,6 +3,7 @@
 #'This function builds a categorical variable from a numeric variable
 #'@import RForcecom
 #'@import dplyr
+#'@export slider
 
 
 slider <- function(var, iter) # 2 inputs; The numeric variable to convert and Number of cuts
