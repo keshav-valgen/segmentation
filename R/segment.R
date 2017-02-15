@@ -8,13 +8,13 @@ segment <- function(access_token, instance_url, object, field){
 # mytext <- c(inputs[['access_token']], inputs[['instance_url']],
 #             '36.0', inputs[['object']], inputs[['field']])
 # access_t <- inputs[1]
-# instance_u <- paste0(inputs[2],'/')
+instance_u <- paste0(instance_url,'/')
 api <- '36.0'
 # obj <- inputs[3]
 # field <- inputs[4]
 
 myquery <- paste0('Select Id, ', field,' FROM ', object)
-session <- c(sessionID = access_token,instanceURL = instance_url, apiVersion = api)
+session <- c(sessionID = access_token,instanceURL = instance_u, apiVersion = api)
 data1 <- rforcecom.bulkQuery(session, myquery, object)
 data1 <- na.omit(data1)
 
