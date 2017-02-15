@@ -1,6 +1,10 @@
-library(RForcecom)
-library(dplyr)
-library(jsonlite)
+#'Segment
+#'
+#'This function builds a categorical variable from a numeric variable
+#'@usage segment()
+#'@import RForcecom
+#'@import dplyr
+#'@import stats
 
 segment <- function(access_token, instance_url, object, field){
 
