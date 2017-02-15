@@ -5,14 +5,14 @@ library(jsonlite)
 
 segment <- function(data){
 
-inputs <- fromJSON(data, simplifyVector = FALSE)
-mytext <- c(inputs[['access_token']], inputs[['instance_url']],
-            '36.0', inputs[['object']], inputs[['field']])
-access_t <- mytext[1]
-instance_u <- paste0(mytext[2],'/')
-api <- mytext[3]
-obj <- mytext[4]
-field <- mytext[5]
+inputs <- c(data)
+# mytext <- c(inputs[['access_token']], inputs[['instance_url']],
+#             '36.0', inputs[['object']], inputs[['field']])
+access_t <- inputs[1]
+instance_u <- paste0(inputs[2],'/')
+api <- '36.0'
+obj <- inputs[3]
+field <- inputs[4]
 
 myquery <- paste0('Select Id, ', field,' FROM ', obj)
 data1 <- myqueries(access_t, instance_u, api, myquery, obj)
