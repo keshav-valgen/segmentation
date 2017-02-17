@@ -14,6 +14,7 @@ api <- '36.0'
 
 myquery <- paste0('Select Id, ', field,' FROM ', object)
 session <- c(sessionID = access_token,instanceURL = instance_u, apiVersion = api)
+
 data1 <- rforcecom.bulkQuery(session, myquery, object)
 data1 <- na.omit(data1)
 
