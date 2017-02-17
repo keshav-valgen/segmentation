@@ -43,6 +43,7 @@ predictor <- function(access_token, instance_url, object, numfield, catfield){
   indexdata$Rank <- rank(-indexdata$indexes)
   indexdata <- subset(indexdata, select = c("categorical", "Rank")) #Writing the ranks to each individual record
   data2 <- merge(data1, indexdata, by = "categorical")
-
+  data2 <- subset(data2, select = c("Id", "categorical", "Rank"))
+  colnames(data2) <- c("strId", "categorical", "dist")
   return(data2)
 }

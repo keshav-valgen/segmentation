@@ -9,4 +9,3 @@ quad(access_token, instance_url, object, field1, field2)
 \description{
 This function takes two variables and converts them into a quad
 }
-

@@ -25,6 +25,6 @@ quad <- function(access_token, instance_url, object, field1, field2){
   summary$Rank <- rank(-summary$counts)
   newdata <- merge(newdata, summary, all = T)
   newdata <- subset(newdata, select = c('Id', 'Rank'))
-
+  colnames(newdata) <- c("strId", "dist")
   return(newdata)
 }

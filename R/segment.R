@@ -22,5 +22,6 @@ data2 <- subset(data1, select = c(2))
 data2 <- slider(data2, 5)
 data1 <- cbind(data1, data2) # Derived values are binded to the original data
 data1 <- subset(data1, select = c("Id", "dist"))
+colnames(data1) <- c("strId", "dist")
 return(data1)
 }
