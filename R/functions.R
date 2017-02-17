@@ -88,7 +88,7 @@ ranker <- function(dataFrame)
   myorder <-  tbl_df(df)
 
   colnames(myorder) <- c('Id', 'quant', 'qual') #Colnames generalized for ease of use
-  #myorder <- na.omit(myorder)
+  myorder <- na.omit(myorder)
   myorder$quant[is.na(myorder$quant)] <- 0 # Numeric NAs are considered as 0s
   myorder <- myorder %>% arrange(desc(qual))
 
