@@ -7,6 +7,7 @@
 #'@export data_clean
 #'@export ranker
 #'@export index
+#'@export slider2
 
 
 slider <- function(var, iter) # 2 inputs; The numeric variable to convert and Number of cuts
@@ -120,9 +121,9 @@ ranker <- function(dataFrame)
 index <- function(data1)  # Indexing algorithm; takes in one dataframe with 2 variables, variable 1 is numeric (Dependent)
   # and variable 2 is categorical (Independent)
 {
-  names(data1) <- c("Numeric","Categoric")
+  names(data1) <- c("Numeric","Categorical")
 
-  index1 <- data1 %>% group_by(Categoric) %>%
+  index1 <- data1 %>% group_by(Categorical) %>%
     summarise(avg = mean(Numeric), count = n(), sum = sum(Numeric)) # The algorithm groups by categorical variable, summarizing by mean, count and sum of numeric variable
 
   value1 <- sum(index1$sum)/sum(index1$count) #Index is calculated from the summary
@@ -130,7 +131,49 @@ index <- function(data1)  # Indexing algorithm; takes in one dataframe with 2 va
   return(index1) # The function returns an indexed table with index values.
 }
 
+slider2 <- function(var, iter) # 2 inputs; The numeric variable to convert and Number of cuts
+{
+  if(mean(var) > 100000){
+    var <- round((var/100000), -1)    # conditional statement if the mean of the variable is more than 100,000, round it off for ease of use.
+  }
 
+  fdata <- data.frame(var)
+  fdata$dist <- "NA"
+
+  # For continuous numeric variables, bsed on the specified split, percentiles are used to split the data into equal parts.
+  if(iter == 2){
+
+    cutoff <- quantile(fdata[[1]], 1/2)
+    fdata$dist[fdata[1] <= cutoff] <- paste0("0 to ",cutoff )
+    fdata$dist[fdata[1] > cutoff & fdata[1] <= max(var) ] <- paste0(cutoff," to ", max(var))
+    return(fdata)
+  }else if(iter == 3){
+
+    cutoff <- quantile(fdata[[1]], c(1/3, 2*(1/3)))
+    fdata$dist[fdata[1] <= cutoff[1]] <- paste0("0 to ",cutoff[1] )
+    fdata$dist[fdata[1] > cutoff[1] & fdata[1] <= cutoff[2] ] <- paste0(cutoff[1]+1," to ", (cutoff[2]))
+    fdata$dist[fdata[1] > cutoff[2] & fdata[1] <= max(var) ] <- paste0(cutoff[2]+1," to ", max(var))
+    return(fdata)
+  } else if(iter == 4){
+
+    cutoff <- quantile(fdata[[1]], c(1/4, 2*(1/4), 3*(1/4)))
+    fdata$dist[fdata[1] <= cutoff[1]] <- paste0("0 to ",cutoff[1] )
+    fdata$dist[fdata[1] > cutoff[1] & fdata[1] <= cutoff[2] ] <- paste0(cutoff[1]+1," to ", (cutoff[2]))
+    fdata$dist[fdata[1] > cutoff[2] & fdata[1] <= cutoff[3] ] <- paste0(cutoff[2]+1," to ", (cutoff[3]))
+    fdata$dist[fdata[1] > cutoff[3] & fdata[1] <= max(var) ] <- paste0(cutoff[3]+1," to ", max(var))
+    return(fdata)
+  } else if(iter == 5){
+
+    cutoff <- quantile(fdata[[1]], c(1/5, 2*(1/5), 3*(1/5), 4*(1/5)))
+    fdata$dist[fdata[1] <= cutoff[1]] <- paste0("0 to ",cutoff[1] )
+    fdata$dist[fdata[1] > cutoff[1] & fdata[1] <= cutoff[2] ] <- paste0(cutoff[1]+1," to ", (cutoff[2]))
+    fdata$dist[fdata[1] > cutoff[2] & fdata[1] <= cutoff[3] ] <- paste0(cutoff[2]+1," to ", (cutoff[3]))
+    fdata$dist[fdata[1] > cutoff[3] & fdata[1] <= cutoff[4] ] <- paste0(cutoff[3]+1," to ", (cutoff[4]))
+    fdata$dist[fdata[1] > cutoff[4] & fdata[1] <= max(var) ] <- paste0(cutoff[4]+1," to ", max(var))
+    return(fdata)
+    # Upto 5 cuts can be done
+  }
+}
 
 
 
