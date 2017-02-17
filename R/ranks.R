@@ -3,9 +3,9 @@
 #'This function ranks a categorical variable from a numeric variable
 #'@import RForcecom
 #'@import dplyr
-#'@export rank
+#'@export ranks
 
-rank <- function(access_token, instance_url, object, depfield, indfield){
+ranks <- function(access_token, instance_url, object, depfield, indfield){
 
   instance_u <- paste0(instance_url,'/')
   api <- '36.0'
