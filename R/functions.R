@@ -96,26 +96,35 @@ ranker <- function(dataFrame)
   summary <- myorder %>% group_by(qual) %>%
     summarise(Records = n(), total = sum(quant))
   summary <- summary %>% arrange(desc(total))
-  summary$decile <- as.numeric('NA')
 
-  # Core algorithm; setting up values and creating decile rankings
-  totalcount <- nrow(summary)
-  order1 <- tail(summary, totalcount %% 10)
-  order1$decile <- 11 # Anything not belonging to specified parameters will go to 11
-  order2 <- summary[-seq(nrow(summary),nrow(summary)-((totalcount %% 10)-1)),]
-  totalcount <- nrow(order2)
+  if(nrow(summary) <= 10){
 
-  order2$decile <- rep(1:10, each = totalcount/10) #Create Declies
+    summary$decile <- rank(-summary$total)
+    final <- merge(myorder, summary, by = 'qual')
+    final <- final %>% arrange(decile)
+    return(as.data.frame(final))
+  }else{
 
-  #Binding the two split tables
-  order <- rbind(order2,order1)
+    summary$decile <- as.numeric('NA')
 
-  final <- merge(myorder, order, by = 'qual')
-  final$Records <- NULL
-  final$total <- NULL
-  final <- final %>% arrange(decile)
-  return(as.data.frame(final)) # Returns the data frame at record levels with decile values from 1: 11 appended
+    # Core algorithm; setting up values and creating decile rankings
+    totalcount <- nrow(summary)
+    order1 <- tail(summary, totalcount %% 10)
+    order1$decile <- 11 # Anything not belonging to specified parameters will go to 11
+    order2 <- summary[-seq(nrow(summary),nrow(summary)-((totalcount %% 10)-1)),]
+    totalcount <- nrow(order2)
 
+    order2$decile <- rep(1:10, each = totalcount/10) #Create Declies
+
+    #Binding the two split tables
+    order <- rbind(order2,order1)
+
+    final <- merge(myorder, order, by = 'qual')
+    final$Records <- NULL
+    final$total <- NULL
+    final <- final %>% arrange(decile)
+    return(as.data.frame(final)) # Returns the data frame at record levels with decile values from 1: 11 appended
+  }
 }
 
 index <- function(data1)  # Indexing algorithm; takes in one dataframe with 2 variables, variable 1 is numeric (Dependent)
