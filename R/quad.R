@@ -22,7 +22,7 @@ quad <- function(access_token, instance_url, object, field1, field2){
   newdata <- data.frame(Id = data1$Id, var1, var2)
   summary <- newdata %>% group_by(var1, var2) %>%
     summarise(counts = n())
-  summary$Rank <- rank(-summary$counts)
+  summary$Rank <- rank(-summary$counts, ties.method = "random")
   newdata <- merge(newdata, summary, all = T)
   newdata <- subset(newdata, select = c('Id', 'Rank'))
   colnames(newdata) <- c("strId", "dist")
