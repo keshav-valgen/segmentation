@@ -41,10 +41,10 @@ slider <- function(var, iter) # 2 inputs; The numeric variable to convert and Nu
 
     cutoff <- quantile(fdata[[1]], c(1/5, 2*(1/5), 3*(1/5), 4*(1/5)))
     fdata$dist[fdata[1] <= cutoff[1]] <- paste0("0 to ",cutoff[1] )
-    fdata$dist[fdata[1] > cutoff[1] & fdata[1] <= cutoff[2] ] <- paste0(cutoff[1]+1," to ", (cutoff[2]))
-    fdata$dist[fdata[1] > cutoff[2] & fdata[1] <= cutoff[3] ] <- paste0(cutoff[2]+1," to ", (cutoff[3]))
-    fdata$dist[fdata[1] > cutoff[3] & fdata[1] <= cutoff[4] ] <- paste0(cutoff[3]+1," to ", (cutoff[4]))
-    fdata$dist[fdata[1] > cutoff[4] & fdata[1] <= max(var) ] <- paste0(cutoff[4]+1," to ", max(var))
+    fdata$dist[fdata[1] > cutoff[1] & fdata[1] <= cutoff[2] ] <- paste0(round(cutoff[1], 0)+1," to ", round(cutoff[2],0))
+    fdata$dist[fdata[1] > cutoff[2] & fdata[1] <= cutoff[3] ] <- paste0(round(cutoff[2], 0)+1," to ", round(cutoff[3],0))
+    fdata$dist[fdata[1] > cutoff[3] & fdata[1] <= cutoff[4] ] <- paste0(round(cutoff[3], 0)+1," to ", round(cutoff[4],0))
+    fdata$dist[fdata[1] > cutoff[4] & fdata[1] <= max(var) ] <- paste0(round(cutoff[4], 0) +1," to ", round(max(var),0))
     return(fdata)
     # Upto 5 cuts can be done
 
