@@ -97,7 +97,7 @@ ranker <- function(dataFrame)
     summarise(Records = n(), total = sum(quant))
   summary <- summary %>% arrange(desc(total))
 
-  if(nrow(summary) <= 5){
+  if(nrow(summary) <= 10){
 
     summary$decile <- rank(-summary$total)
     final <- merge(myorder, summary, by = 'qual')
@@ -109,12 +109,12 @@ ranker <- function(dataFrame)
 
     # Core algorithm; setting up values and creating decile rankings
     totalcount <- nrow(summary)
-    order1 <- tail(summary, totalcount %% 5)
-    order1$decile <- 6 # Anything not belonging to specified parameters will go to 11
+    order1 <- tail(summary, totalcount %% 10)
+    order1$decile <- 11 # Anything not belonging to specified parameters will go to 6
     order2 <- summary[-seq(nrow(summary),nrow(summary)-((totalcount %% 10)-1)),]
     totalcount <- nrow(order2)
 
-    order2$decile <- rep(1:5, each = totalcount/5) #Create Declies
+    order2$decile <- rep(1:10, each = totalcount/10) #Create Declies
 
     #Binding the two split tables
     order <- rbind(order2,order1)
