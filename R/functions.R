@@ -76,7 +76,8 @@ data_clean <- function(var){
     cat_name <- names(table(var)[which.max(table(var))])
     var <- as.character(var)
     var[var != cat_name] <- "OTHER"
-    return(as.factor(var))
+    var <- factor(var)
+    return(var)
   }
 }
 
@@ -89,7 +90,8 @@ ranker <- function(dataFrame)
 
   colnames(myorder) <- c('Id', 'quant', 'qual') #Colnames generalized for ease of use
   #myorder <- na.omit(myorder)
-  myorder$quant[is.na(myorder$quant)] <- 0 # Numeric NAs are considered as 0s
+  myorder$quant[is.na(myorder$quant)] <- 0# Numeric NAs are considered as 0s
+  myorder$qual <- factor(myorder$qual)
   myorder <- myorder %>% arrange(desc(qual))
 
   # Summarization and grouping by independent variable
