@@ -20,7 +20,6 @@ data1 <- na.omit(data1)
 
 # Data Treatment starts Here
 data2 <- subset(data1, select = c(2))
-data2 <- factor(data2)
 data2 <- slider(data2, 5)
 data1 <- cbind(data1, data2) # Derived values are binded to the original data
 data1 <- subset(data1, select = c("Id", "dist"))
