@@ -33,5 +33,5 @@ colnames(my_data) <- c("id", newname)
 batches_info <- rforcecom.createBulkBatch(session,
                                           jobId = update_job$id, data = my_data) #Update job
 
-return(batches_info)
+return(data1)
 }
