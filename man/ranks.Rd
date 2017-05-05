@@ -9,3 +9,4 @@ ranks(access_token, instance_url, object, depfield, indfield)
 \description{
 This function ranks a categorical variable from a numeric variable
 }
+
