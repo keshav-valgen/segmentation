@@ -47,3 +47,5 @@ predictor <- function(access_token, instance_url, object, numfield, catfield){
   colnames(data2) <- c("strId", "categorical", "dist")
   return(data2)
 }
+
+
