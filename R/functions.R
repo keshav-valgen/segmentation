@@ -10,6 +10,8 @@
 #'@export slider2
 
 
+
+
 slider <- function(var, iter) # 2 inputs; The numeric variable to convert and Number of cuts
 {
   fdata <- var
