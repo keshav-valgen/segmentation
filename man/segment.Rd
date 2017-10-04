@@ -9,4 +9,3 @@ segment(access_token, instance_url, object, field)
 \description{
 This function builds a categorical variable from a numeric variable
 }
-
