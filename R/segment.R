@@ -18,6 +18,8 @@ session <- c(sessionID = access_token,instanceURL = instance_u, apiVersion = api
 data1 <- rforcecom.bulkQuery(session, myquery, object)
 data1 <- na.omit(data1)
 
+
+
 # Data Treatment starts Here
 data2 <- subset(data1, select = c(2))
 data2 <- slider(data2, 5)
