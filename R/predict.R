@@ -36,6 +36,8 @@ predictor <- function(access_token, instance_url, object, numfield, catfield){
 
     categorical <- as.factor(categorical)
   }
+  
+  
 
   data1 <- data.frame(Id = data1$Id, numeric, categorical)
   indexdata <- subset(data1, select = c("numeric", "categorical"))
