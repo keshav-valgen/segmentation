@@ -4,7 +4,6 @@
 #'@import RForcecom
 #'@import dplyr
 #'@export predictor
-#'
 
 predictor <- function(access_token, instance_url, object, numfield, catfield){
 
@@ -37,8 +36,6 @@ predictor <- function(access_token, instance_url, object, numfield, catfield){
     categorical <- as.factor(categorical)
   }
   
-  
-
   data1 <- data.frame(Id = data1$Id, numeric, categorical)
   indexdata <- subset(data1, select = c("numeric", "categorical"))
   indexdata <- index(indexdata)
@@ -49,7 +46,4 @@ predictor <- function(access_token, instance_url, object, numfield, catfield){
   colnames(data2) <- c("strId", "categorical", "dist")
   return(data2)
 }
-
-
-
 
