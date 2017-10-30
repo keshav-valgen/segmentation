@@ -5,7 +5,6 @@
 #'@import dplyr
 #'@export segment_new
 
-
 segment_new <- function(access_token, instance_url, object, field){
   
   
