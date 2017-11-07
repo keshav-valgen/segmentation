@@ -19,7 +19,6 @@ Imports:
     stringr,
     stringi (> 1.1),
     readr (>= 1.1.1),
-    testthat (>= 1.0.0)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
