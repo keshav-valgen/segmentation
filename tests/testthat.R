@@ -1,4 +1,4 @@
 library(testthat)
-library(prospervue)
+library(segmentation)
 
-test_check("prospervue")
+test_check("segmentation")
