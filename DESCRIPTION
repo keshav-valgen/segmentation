@@ -17,7 +17,7 @@ Imports:
     RForcecom (>= 1.1.5),
     dplyr (>= 0.7),
     stringr,
-    stringi (),
+    stringi (> 1.1.5),
     readr (>= 1.1.1),
     testthat (>= 1.0.0)
 License: What license is it under?
