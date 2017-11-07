@@ -14,10 +14,10 @@ Depends:
     R (>= 3.0)
 Imports:
     jsonlite (>= 1.5),
-    RForcecom (>= 1.1.5),
+    RForcecom (>= 1.1),
     dplyr (>= 0.7),
     stringr,
-    stringi (> 1.1.5),
+    stringi (> 1.1),
     readr (>= 1.1.1),
     testthat (>= 1.0.0)
 License: What license is it under?
