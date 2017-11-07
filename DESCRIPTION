@@ -8,17 +8,16 @@ Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 Suggests:
     testthat,
-    stringi (>= 0.5.2),
-    readr (>= 1.0)
-Depends:
-    R (>= 3.0)
+    stringi,
+    readr
+
 Imports:
-    jsonlite (>= 1.5),
-    RForcecom (>= 1.1),
-    dplyr (>= 0.7),
+    jsonlite,
+    RForcecom,
+    dplyr,
     stringr,
-    stringi (> 1.1),
-    readr (>= 1.1.1),
+    stringi,
+    readr,
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
