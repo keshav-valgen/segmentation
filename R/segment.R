@@ -29,3 +29,5 @@ colnames(data1) <- c("strId", "dist")
 
 return(data1)
 }
+
+### Segmentation completed
