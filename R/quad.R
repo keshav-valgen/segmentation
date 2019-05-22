@@ -26,6 +26,6 @@ quad <- function(access_token, instance_url, object, field1, field2,newname){
   newdata <- merge(newdata, summary, all = T)
   newdata <- subset(newdata, select = c('Id', 'Rank'))
   colnames(newdata) <- c("strId", "dist")
-  updater(access_token, instance_url, myobject, newdata)
+  updater(access_token, instance_url, object, newdata)
   return(newdata)
 }
