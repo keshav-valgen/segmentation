@@ -2,8 +2,8 @@ Package: segmentation
 Type: Package
 Title: Analytics applications for use in Salesforce
 Version: 0.1.0
-Author: Keshav
-Maintainer: Keshav <keshav@valgen.com>
+Author: Sudhakar
+Maintainer: Sudhakar <sudhakar.b@valgen.com>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 Imports:
