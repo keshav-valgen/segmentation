@@ -5,7 +5,7 @@
 #'@export quad
 #'
 
-quad <- function(access_token, instance_url, object, field1, field2){
+quad <- function(access_token, instance_url, object, field1, field2,newname){
 
   instance_u <- paste0(instance_url,'/')
   api <- '36.0'
@@ -26,5 +26,6 @@ quad <- function(access_token, instance_url, object, field1, field2){
   newdata <- merge(newdata, summary, all = T)
   newdata <- subset(newdata, select = c('Id', 'Rank'))
   colnames(newdata) <- c("strId", "dist")
+  updater(access_token, instance_url, myobject, newdata)
   return(newdata)
 }
